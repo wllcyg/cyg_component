@@ -1,25 +1,26 @@
-import { createWebHashHistory, createRouter,RouteRecordRaw  } from 'vue-router'
-// 定义路由配置类型
-import Layout from '@/layout/index.vue'
-const routes:Array<RouteRecordRaw > = [
-    {
-        path: '/',
-        redirect: '/home',
-        component: Layout,
-        children:[
-            {
-                path:'home',
-                component:() => import('@/views/dashboard/dashboard.vue'),
-                name:'Dashboard',
-            }
-        ]
-    }
-]
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import HomeView from "../views/HomeView.vue";
 
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "home",
+    component: HomeView,
+  },
+  {
+    path: "/about",
+    name: "about",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  },
+];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
+  history: createWebHashHistory(),
+  routes,
 });
 
-export default router
+export default router;
