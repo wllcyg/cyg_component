@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import path from 'path'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -27,8 +29,17 @@ export default defineConfig({
       dts: './auto-imports.d.ts',
       resolvers: [ElementPlusResolver()],
     }),
+    //自动注册组件
     Components({
+      dirs:['src/components'],
       resolvers: [ElementPlusResolver()],
+      extensions:['vue'],
+      dts:'src/components.d.ts'
     }),
   ],
+  resolve:{
+    alias:{
+      '@': path.resolve(__dirname, './src'),
+    }
+  }
 })
