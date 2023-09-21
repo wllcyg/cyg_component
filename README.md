@@ -1,24 +1,8 @@
-# app
+# React + Vite
 
-## Project setup
-```
-yarn install
-```
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Currently, two official plugins are available:
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
