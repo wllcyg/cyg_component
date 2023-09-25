@@ -2,7 +2,7 @@
 const Other = () => {
   return (
     <div>
-      About
+      其他页面
     </div>
   );
 };

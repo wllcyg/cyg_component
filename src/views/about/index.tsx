@@ -2,7 +2,7 @@
 const About = () => {
   return (
     <div className={'text-8xl font-bold'}>
-      About
+    11
     </div>
   );
 };
