@@ -1,27 +1,32 @@
-import  {lazy,  Suspense} from "react";
-import {createHashRouter} from "react-router-dom";
+import  {lazy} from "react";
+import {createHashRouter, Navigate} from "react-router-dom";
+import Main from '../App.tsx'
+const About = lazy(() => import('@/views/about/index.tsx'));
+const Error =lazy(() => import('@/views/Error.tsx'));
+const Login  = lazy(() => import("@/views/Login"));
 
-const withLazyLoading = (Component:string) => {
-  const LazyComponent = lazy(() => import(Component));
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const LazyLoadingWrapper = (props) => {
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <LazyComponent {...props} />
-      </Suspense>
-    );
-  };
-  return <LazyLoadingWrapper />;
-};
+
+
 // 获取路由
-const pages = import.meta.glob('/src/views/**/index.tsx')
-console.log(pages)
 const route = createHashRouter([
   {
     path: '/',
-    element: withLazyLoading('../App.tsx'),
-
+    element: <Main/>,
+    errorElement:<Error/>,
+    children:[
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'*',
+        element:<Navigate to='/' replace={true}/>
+      }
+    ]
   },
+  {
+    path:'/login',
+    element:<Login/>
+  }
 ]);
 export default route
