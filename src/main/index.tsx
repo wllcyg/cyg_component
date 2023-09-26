@@ -76,7 +76,6 @@ const MainApp: React.FC = () => {
             margin: '24px 16px',
             padding: 24,
             minHeight: 'calc(100vh - 112px)',
-            background: colorBgContainer,
           }}
         >
           <Suspense fallback={<Spin size="large"  className={'h-full w-full flex justify-center items-center'} />}>

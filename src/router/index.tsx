@@ -39,7 +39,7 @@ const routes = [
         label:'组件',
         children:[
           {
-            path:'/form/com',
+            path:'/form/headcorp',
             label:'头像裁剪',
             element:<HeadCrop/>
           },
