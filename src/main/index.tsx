@@ -1,22 +1,51 @@
-import React, {Suspense, useState} from 'react'
+import React, {ReactElement, Suspense, useEffect, useState} from 'react'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu, Button, theme, Spin} from 'antd';
-import {Outlet} from "react-router-dom";
-
+import {Outlet, useNavigate,useLocation} from "react-router-dom";
+import type {MenuProps } from 'antd'
 const { Header, Sider, Content } = Layout;
-
+import { routes } from '@/router'
+type RouteType = {
+  path:string;
+  label:string;
+  children?: RouteType[] | null | undefined;
+  element?:ReactElement | null | undefined;
+}
 const MainApp: React.FC = () => {
+  const Navigate = useNavigate()
+  const { pathname } = useLocation()
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
+  // 路由跳转
+  const getItems = (children:RouteType[]): { key: string; label: string; }[]=> {
+      return children.map(e =>{
+        const { path,label,children } = e
+        return {
+          key:path,
+          label,
+          children:children ? getItems(children) :null,
+          icon:<MenuUnfoldOutlined/>
+        }
+      })
+  }
+  const routeMap = routes[0].children.filter(e=>e.path !== '*')
+  const HomePath = routes[0].redirect
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const menu = getItems(routeMap)
+  useEffect(() => {
+    if (pathname === '/'){
+      Navigate(HomePath)
+    }
+  },[pathname,Navigate,HomePath])
+  const MenuItemClick:MenuProps['onClick'] = ({key}) =>{
+    Navigate(key)
+  }
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -24,24 +53,9 @@ const MainApp: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
+          defaultSelectedKeys={[pathname === '/' ? HomePath :pathname]}
+          onClick={MenuItemClick}
+          items={menu}
         />
       </Sider>
       <Layout>

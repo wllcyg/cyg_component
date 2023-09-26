@@ -3,10 +3,11 @@ import {createHashRouter, Navigate} from "react-router-dom";
 import Main from '../App.tsx'
 const About = lazy(() => import('@/views/about/index.tsx'));
 const Error =lazy(() => import('@/views/Error.tsx'));
-const ComItem =lazy(() => import('@/views/form/com'));
+const HeadCrop =lazy(() => import('@/views/form/headcorp'));
 const TableList =lazy(() => import('@/views/form/table'));
 const TableChild =lazy(() => import('@/views/form/table/child'));
 const Other =lazy(() => import('@/views/other'));
+const DashBoard =lazy(() => import('@/views/dashboard'));
 
 /**
  * 1. 实现路由结构,按照文件夹递归查抄
@@ -18,32 +19,38 @@ const Other =lazy(() => import('@/views/other'));
 const routes = [
   {
     path: '/',
-    name:'首页',
+    label:'首页',
     element: <Main/>,
     errorElement:<Error/>,
+    redirect:'/dashboard',
     children:[
       {
+        path:'/dashboard',
+        label:'首页',
+        element:<DashBoard/>
+      },
+      {
         path:'/about',
-        name:'关于',
+        label:'关于',
         element:<About/>
       },
       {
         path:'form',
-        name:'表单类别',
+        label:'组件',
         children:[
           {
             path:'/form/com',
-            name:'拖拽',
-            element:<ComItem/>
+            label:'头像裁剪',
+            element:<HeadCrop/>
           },
           {
             path:'/form/table',
-            name:'合并',
+            label:'合并',
             element:<TableList/>,
             children:[
               {
                 path:'/form/table/col',
-                name:'列合并',
+                label:'列合并',
                 element:<TableChild/>
               }
             ]
@@ -52,7 +59,7 @@ const routes = [
       },
       {
         path:'/other',
-        name:'其他',
+        label:'其他',
         element:<Other/>
       },
       {
@@ -65,4 +72,5 @@ const routes = [
 ]
 // 获取路由
 const route = createHashRouter(routes);
+export {routes}
 export default route

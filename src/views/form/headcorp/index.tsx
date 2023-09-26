@@ -1,4 +1,4 @@
-const ComItem = () => {
+const HeadCrop = () => {
   return (
     <div>
       <h1 className='font-bold '>TableList</h1>
@@ -6,4 +6,4 @@ const ComItem = () => {
   );
 };
 
-export default ComItem;
+export default HeadCrop;
