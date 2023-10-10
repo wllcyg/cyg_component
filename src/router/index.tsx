@@ -3,9 +3,9 @@ import {createHashRouter, Navigate} from "react-router-dom";
 import Main from '../App.tsx'
 const About = lazy(() => import('@/views/about/index.tsx'));
 const Error =lazy(() => import('@/views/Error.tsx'));
-const HeadCrop =lazy(() => import('@/views/form/headcorp'));
-const TableList =lazy(() => import('@/views/form/table'));
-const TableChild =lazy(() => import('@/views/form/table/child'));
+const HeadCrop =lazy(() => import('@/views/example/headcorp'));
+const TableList =lazy(() => import('@/views/example/table'));
+const TableChild =lazy(() => import('@/views/example/table/child'));
 const Other =lazy(() => import('@/views/other'));
 const DashBoard =lazy(() => import('@/views/dashboard'));
 
@@ -35,21 +35,21 @@ const routes = [
         element:<About/>
       },
       {
-        path:'form',
-        label:'组件',
+        path:'example',
+        label:'组件例子',
         children:[
           {
-            path:'/form/headcorp',
+            path:'/example/headcorp',
             label:'头像裁剪',
             element:<HeadCrop/>
           },
           {
-            path:'/form/table',
+            path:'/example/table',
             label:'合并',
             element:<TableList/>,
             children:[
               {
-                path:'/form/table/col',
+                path:'/example/table/col',
                 label:'列合并',
                 element:<TableChild/>
               }
