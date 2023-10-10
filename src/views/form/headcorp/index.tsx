@@ -11,7 +11,7 @@ const HeadCrop = () => {
   const wrapRef = useRef(null)
   const canvasRef = useRef(null)
   const imageRef = useRef(null)
-  const [drapValue, setDrapValue] = useState({
+  const [drapValue] = useState({
     wrapWidth: 256,
     wrapHeight: 256,
     dBoxWidth: 216,
@@ -78,6 +78,7 @@ const HeadCrop = () => {
     const y = offSetTop / 2 / drapValue.dBoxHeight * currentImage.h
     const client_w = drapValue.dBoxWidth / drapValue.wrapWidth * currentImage.w
     const client_h = drapValue.dBoxHeight / drapValue.wrapHeight * currentImage.h
+    // @ts-ignore
     ctx?.drawImage(imageRef.current, x, y, client_w, client_h, 0, 0, drapValue.canvasW, drapValue.canvasH)
   }
   const countDim = () => {
@@ -99,7 +100,7 @@ const HeadCrop = () => {
   }
   // 获取鼠标位置
 
-  const drapMouseMove = (e) => {
+  const drapMouseMove = (e: { clientX: number; clientY: number; }) => {
     if (isMove) {
       // @ts-ignore
       const {left, top} = wrapRef.current.getBoundingClientRect()
@@ -125,7 +126,7 @@ const HeadCrop = () => {
       getImage()
     }
   }
-  const drapMouseDown = (e) => {
+  const drapMouseDown = (e: { clientX: number; clientY: number; }) => {
     // 获取鼠标距离拖动框的坐标,
     // @ts-ignore
     const {left, top} = drapBoxRef.current.getBoundingClientRect()
