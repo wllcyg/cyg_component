@@ -13,6 +13,7 @@
     "@types/node": "^20.6.3",
     "antd": "^5.9.2",
     "autoprefixer": "^10.4.16",
+    "cropperjs": "^1.6.1",
     "postcss": "^8.4.30",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

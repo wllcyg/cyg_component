@@ -19,7 +19,7 @@ const CorpjsComponent = () => {
     if (ImageRef.current) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const Cropper =  new Cropper(ImageRef.current, {
+      const cropper =  new Cropper(ImageRef.current, {
         viewMode: 1,
         initialAspectRatio: 1,
         aspectRatio: 1,
@@ -27,7 +27,7 @@ const CorpjsComponent = () => {
         autoCropArea: 0.6,
         rotatable: true,
       })
-      setCropperinit(Cropper)
+      setCropperinit(cropper)
     }
   }
   const getImageUrl = () => {
