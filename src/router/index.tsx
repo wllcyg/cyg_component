@@ -5,7 +5,6 @@ const About = lazy(() => import('@/views/about/index.tsx'));
 const Error =lazy(() => import('@/views/Error.tsx'));
 const HeadCrop =lazy(() => import('@/views/example/headcorp'));
 const TableList =lazy(() => import('@/views/example/table'));
-const TableChild =lazy(() => import('@/views/example/table/child'));
 const Other =lazy(() => import('@/views/other'));
 const DashBoard =lazy(() => import('@/views/dashboard'));
 
@@ -45,15 +44,8 @@ const routes = [
           },
           {
             path:'/example/table',
-            label:'合并',
+            label:'表格',
             element:<TableList/>,
-            children:[
-              {
-                path:'/example/table/col',
-                label:'列合并',
-                element:<TableChild/>
-              }
-            ]
           },
         ]
       },

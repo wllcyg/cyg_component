@@ -1,5 +1,4 @@
-import {useRef, useState} from "react";
-
+import {useRef,useState} from "react";
 import {Card, Button, Upload} from 'antd'
 import {CorpWrapper} from "@/views/example/headcorp/corpjs/style.ts";
 import Cropper from 'cropperjs'
@@ -12,9 +11,12 @@ import {
   ZoomInOutlined,
   ZoomOutOutlined
 } from '@ant-design/icons'
+import {useImmer} from "use-immer";
 const CorpjsComponent = () => {
   const ImageRef = useRef(null)
-  const [cropperinit, setCropperinit] = useState()
+  const [cropperinit, setCropperinit] = useState(null)
+  // 适用于复杂对象浅拷贝
+  const [count,setCount] = useImmer({test:1})
   const InitCorp = () => {
     if (ImageRef.current) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
