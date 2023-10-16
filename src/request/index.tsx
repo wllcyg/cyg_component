@@ -1,3 +1,4 @@
 
-import Get from "@/request/Get.tsx";
-export default {Get}
+import HttpCom from "@/request/HTTP.tsx";
+
+export default {HttpCom}

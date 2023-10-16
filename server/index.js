@@ -13,6 +13,7 @@ app.all('*',function (req,res,next) {
 })
 
 app.get('/api/list',function (req,res) {
+  console.log(req,res,'testeeee')
   res.send(Data)
 })
 
