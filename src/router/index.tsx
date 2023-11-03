@@ -7,6 +7,8 @@ const HeadCrop =lazy(() => import('@/views/example/headcorp'));
 const TableList =lazy(() => import('@/views/example/table'));
 const Other =lazy(() => import('@/views/other'));
 const DashBoard =lazy(() => import('@/views/dashboard'));
+const FormEx =lazy(() => import('@/views/example/form'));
+
 
 /**
  * 1. 实现路由结构,按照文件夹递归查抄
@@ -46,6 +48,11 @@ const routes = [
             path:'/example/table',
             label:'表格',
             element:<TableList/>,
+          },
+          {
+            path:'/example/form',
+            label:'表单',
+            element:<FormEx/>,
           },
         ]
       },
