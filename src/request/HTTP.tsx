@@ -10,12 +10,15 @@ interface PropsIna {
   errorComponent?: null | ReactNode,
   enptyComponent?: null | ReactNode,
   dataOperator?:(data:object) => void,
+  columOption?:(data:object) => void,
   children: (data: any) => ReactNode,
 }
 const defaultErr = <Result status='warning' title='暂无数据'/>
 const HttpCom = ({url, children, errorComponent, config, enptyComponent,dataOperator,}: PropsIna) => {
   const [showComponent, setShowComponent] = useState<ReactNode>()
   const [loadingState, setLoadingState] = useState(false)
+  // 保存表格数据
+  const [tableData, setTableData] = useState(null)
   const getResult = async () => {
     try {
       setLoadingState(true)
@@ -23,13 +26,14 @@ const HttpCom = ({url, children, errorComponent, config, enptyComponent,dataOper
       if (!res) {
         setShowComponent(enptyComponent ? enptyComponent : defaultErr)
       } else {
-        let _data = null
         if (dataOperator){
-          _data = dataOperator(res)
+          // @ts-ignore
+          setTableData(dataOperator(res))
         }else {
-          _data = res
+          // @ts-ignore
+          setTableData(res)
         }
-        setShowComponent(children(_data))
+        setShowComponent(children(res))
       }
       setLoadingState(false)
     } catch (e) {

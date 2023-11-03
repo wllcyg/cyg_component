@@ -16,7 +16,9 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
-    return response.data
+    if (response.data.code === 200){
+      return response.data.data
+    }
   },
   error => {
     return Promise.reject(error)
