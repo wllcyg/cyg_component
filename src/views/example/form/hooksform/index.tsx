@@ -1,7 +1,7 @@
 /**
  * 主要使用name值可以为[]而使用的
  * */
-import React from "react";
+import React, {useState} from "react";
 import type { FormItemProps } from 'antd'
 import {Form,Input,Button} from "antd";
 const MyFormItemContext = React.createContext<(string | number)[]>([])
@@ -20,11 +20,14 @@ const MyFormItemGroup = ({prefix,children}:MyFormItemGrouProps) => {
 const MyFormItem = ({name,...props}:FormItemProps) => {
   const prefixPath = React.useContext(MyFormItemContext)
   const concatName = name !== undefined ? [...prefixPath,...toArr(name)] :undefined
+  console.log(concatName,'11111111')
   return <Form.Item name={concatName} {...props} />;
 }
 const HooksForm = () => {
+  const [input, setInput] = useState()
+
   const onFinish = (value: object) => {
-    console.log(value);
+    console.log(value,input);
   };
   return (
     <div>
@@ -47,6 +50,7 @@ const HooksForm = () => {
           提交
         </Button>
       </Form>
+      <Input value={input}/>
     </div>
   );
 };
