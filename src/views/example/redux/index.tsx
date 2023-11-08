@@ -1,7 +1,7 @@
 import {Button, Card} from "antd";
 import { useDispatch, useSelector} from 'react-redux'
 import {increment,incrementByAmount,decrement} from "@/store/counterSlice";
-import {postAdd,url} from "@/store/posts";
+import {postAdd,url,fetchPosts} from "@/store/posts";
 import {useEffect} from "react";
 import axios from "axios";
 const ReduxEx = () => {
@@ -16,10 +16,8 @@ const ReduxEx = () => {
   const addPost = () => {
     dispatch(postAdd('张三的文章','测试的文章!'))
   }
-  useEffect(() => {
-    axios.get(url).then(e => {
-      console.log(e,'11111111111')
-    })
+  useEffect( () => {
+    console.log(dispatch(fetchPosts()))
   }, []);
   return (
     <div>

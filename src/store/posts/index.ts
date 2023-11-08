@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice, nanoid} from "@reduxjs/toolkit";
-export const url = 'https://blogs.costlinecyg.top/comment/music?id=186016&limit=1'
+import axios from "axios";
+export const url = 'https://blogs.costlinecyg.top/search?keywords=海阔天空'
 const initialState = [
   { id: '1', title: 'First Post!', content: 'Hello!' },
   { id: '2', title: 'Second Post', content: 'More text' }
@@ -31,9 +32,8 @@ export const postsSlice = createSlice({
   }
 })
 export const fetchPosts = createAsyncThunk('posts/async',async () =>{
-  const res = await fetch(url)
-  console.log(res,'这是一个测试都得异步')
-  return res
+  const res = await axios.get(url)
+  return res.data
 })
 export const { postAdd } = postsSlice.actions
 export default postsSlice.reducer
