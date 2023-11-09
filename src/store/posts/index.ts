@@ -27,8 +27,26 @@ export const postsSlice = createSlice({
           }
         }
       }
-    }
-
+    },
+  },
+  // 处理异步chunk
+  extraReducers(builder){
+    builder
+        .addCase(fetchPosts.pending,(state,action) => {
+          console.log('i am pening')
+        })
+        .addCase(fetchPosts.fulfilled,(state,{payload}) => {
+      //可以将得到得数据存到state,最后将数据进行返回
+      const { result:{ songs },code} = payload
+      state = songs.map(e => {
+        return {
+          id:e.id,
+          title: e.name,
+          content:e.mark
+        }
+      })
+      return state
+    })
   }
 })
 export const fetchPosts = createAsyncThunk('posts/async',async () =>{

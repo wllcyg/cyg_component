@@ -1,9 +1,8 @@
 import {Button, Card} from "antd";
 import { useDispatch, useSelector} from 'react-redux'
 import {increment,incrementByAmount,decrement} from "@/store/counterSlice";
-import {postAdd,url,fetchPosts} from "@/store/posts";
+import {postAdd,fetchPosts} from "@/store/posts";
 import {useEffect} from "react";
-import axios from "axios";
 const ReduxEx = () => {
   const count = useSelector(state => state.counter.value)
   const posts = useSelector(state => state.posts)
